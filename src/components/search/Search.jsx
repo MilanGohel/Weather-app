@@ -24,9 +24,9 @@ const Search = ({ onSearchChange }) => {
   };
 
   const handleOnChange = (searchData) => {
-    console.log(searchData)
+    // console.log(searchData)
     setSearch(searchData);
-    onSearchChange(searchData);
+    onSearchChange(searchData,false);
   };
   const myStyles = {
     zIndex: 10,
