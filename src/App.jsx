@@ -13,11 +13,11 @@ const [currentWeather, setCurrentWeather] = useState(null);
 const [forecast, setForecast] = useState(null);
 
 const handleOnSearchChange = (searchData, check) => {
-  console.log(searchData)
+  // console.log(searchData)
   const [lat, lon] = searchData.value.split(" ");
 
   
-  const currentCityFetch = fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=10&appid=4de442b569062270f14b292269d6bb4e`)
+  const currentCityFetch = fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=10&appid=4de442b569062270f14b292269d6bb4e`)
 
   const currentWeatherFetch = fetch(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
   const forecastFetch = fetch(`${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`)
@@ -27,16 +27,16 @@ const handleOnSearchChange = (searchData, check) => {
     const weatherResponse = await response[0].json();
     const forecastResponse = await response[1].json();
     const currentCityResponse = await response[2].json();
-    console.log(currentCityResponse);
+    // console.log(currentCityResponse);
     if(!check){
       setCurrentWeather({ city: searchData.label, ...weatherResponse });
     }
     else{
-      console.log(currentCityResponse[0])
+      // console.log(currentCityResponse[0])
       setCurrentWeather({ city: currentCityResponse[0].name, ...weatherResponse });
     }
 
-    console.log(currentWeather)
+    // console.log(currentWeather)
     setForecast({ city: searchData.label, ...forecastResponse })
   }).catch(console.log)
 }
